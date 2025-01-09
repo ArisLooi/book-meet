@@ -1,11 +1,11 @@
-import { Client, Databases, Account, Storage } from 'note-appwrite';
+import { Client, Databases, Account, Storage } from 'node-appwrite';
 
 // Admin Client
 const createAdminClient = async () => {
     const client = new Client()
-        .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT) // Your API Endpoint
-        .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT)             // Your project ID
-        .setKey(process.env.NEXT_APPWRITE_KEY);                   // Your secret API key
+        .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT)
+        .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT)
+        .setKey(process.env.NEXT_APPWRITE_KEY);
 
     return {
         get account() {
@@ -17,13 +17,13 @@ const createAdminClient = async () => {
         get storage() {
             return new Storage(client);
         },
-    }
+    };
 };
 
 const createSessionClient = async (session) => {
     const client = new Client()
-        .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT) // Your API Endpoint
-        .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT)             // Your project ID
+        .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT)
+        .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT);
 
     if (session) {
         client.setSession(session);
@@ -36,7 +36,7 @@ const createSessionClient = async (session) => {
         get databases() {
             return new Databases(client);
         },
-    }
+    };
 };
 
 export { createAdminClient, createSessionClient };

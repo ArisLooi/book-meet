@@ -15,7 +15,7 @@ async function getAllRooms() {
         );
 
         // Revalidate the cache for this path
-        revalidatePath('/', 'layout');
+        // revalidatePath('/', 'layout');
 
         return rooms;
     } catch (error) {
@@ -25,3 +25,5 @@ async function getAllRooms() {
 }
 
 export default getAllRooms;
+
+
