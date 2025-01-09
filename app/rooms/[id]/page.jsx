@@ -17,13 +17,13 @@ const RoomPage = ({ params }) => { //params from the server side
         <>
             <Heading title={room.name} />
             <div className="bg-white shadow rounded-lg p-6">
-                <a
-                    href="/rooms.html"
+                <Link
+                    href="/"
                     className="flex items-center text-gray-600 hover:text-gray-800 mb-4"
                 >
                     <FaChevronLeft className='inline mr-1' />
                     <span className="ml-2">Back to Rooms</span>
-                </a>
+                </Link>
 
                 <div className="flex flex-col sm:flex-row sm:space-x-6">
                     <Image
