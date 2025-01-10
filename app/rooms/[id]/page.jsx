@@ -3,11 +3,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import BookingForm from '@/components/BookingForm';
 import { FaChevronLeft } from 'react-icons/fa';
-import rooms from '@/data/rooms.json';
+import getSingleRoom from '@/app/actions/getSingleRoom';
 
-const RoomPage = ({ params }) => { //params from the server side
+const RoomPage = async ({ params }) => { //params from the server side
     const { id } = params; //destructure the id from the params
-    const room = rooms.find((room) => room.$id === id); //find the room with matching id from the url
+    const room = await getSingleRoom(id); //find the room with matching id from the url
 
     if (!room) {
         return <Heading title='Room Not Found' />
