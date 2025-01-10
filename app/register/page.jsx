@@ -17,7 +17,7 @@ const RegisterPage = () => {
                             type="text"
                             id="name"
                             name="name"
-                            className="border rounded w-full py-2 px-3"
+                            className="border rounded w-full py-2 px-3 text-gray-700"
                             required
                         />
                     </div>
@@ -30,7 +30,7 @@ const RegisterPage = () => {
                             type="email"
                             id="email"
                             name="email"
-                            className="border rounded w-full py-2 px-3"
+                            className="border rounded w-full py-2 px-3 text-gray-700"
                             required
                         />
                     </div>
@@ -43,7 +43,7 @@ const RegisterPage = () => {
                             type="password"
                             id="password"
                             name="password"
-                            className="border rounded w-full py-2 px-3"
+                            className="border rounded w-full py-2 px-3 text-gray-700"
                             required
                         />
                     </div>
@@ -58,7 +58,7 @@ const RegisterPage = () => {
                             type="password"
                             id="confirm-password"
                             name="confirm-password"
-                            className="border rounded w-full py-2 px-3"
+                            className="border rounded w-full py-2 px-3 text-gray-700"
                             required
                         />
                     </div>
