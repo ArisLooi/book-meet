@@ -34,11 +34,11 @@ const RoomPage = async ({ params }) => { //params from the server side
 
                 <div className="flex flex-col sm:flex-row sm:space-x-6">
                     <Image
-                        src={`/images/rooms/${ImageSrc}`}
+                        src={`/images/rooms/${imageSrc}`}
                         alt={room.name}
                         width={400}
                         height={100}
-                        className="w-full sm:w-1/3 h-64 object-cover rounded-lg"
+                        className="w-full sm:w-1/3 h-64 object-cover rounded-lg "
                     />
 
                     <div className="mt-4 sm:mt-0 sm:flex-1">
