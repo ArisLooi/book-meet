@@ -56,7 +56,7 @@ async function createRoom(previousState, formData) {
             }
         );
 
-        // revalidatePath('/', 'layout');
+        revalidatePath('/', 'layout');
         return {
             success: true
         }
