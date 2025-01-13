@@ -26,13 +26,13 @@ async function getMyBookings() {
         }
 
         // Fetch user bookings
-        const { documents: bookingss } = await databases.listDocuments(
+        const { documents: bookings } = await databases.listDocuments(
             process.env.NEXT_PUBLIC_APPWRITE_DATABASE,
             process.env.NEXT_PUBLIC_APPWRITE_COLLECTION_BOOKINGS,
             [Query.equal('user_id', user.id)]
         );
 
-        return bookingss;
+        return bookings;
     } catch (error) {
         console.log('Failed to get user bookings', error);
         return {

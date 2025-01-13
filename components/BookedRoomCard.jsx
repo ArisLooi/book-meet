@@ -1,4 +1,4 @@
-
+import Link from "next/link"
 
 const BookedRoomCard = ({ booking }) => {
     const { room_id: room } = booking
@@ -41,12 +41,12 @@ const BookedRoomCard = ({ booking }) => {
             <div
                 className="flex flex-col sm:flex-row w-full sm:w-auto sm:space-x-2 mt-2 sm:mt-0"
             >
-                <a
-                    href="room.html"
+                <Link
+                    href={`/rooms/${room.$id}`} // Use template literals correctly
                     className="bg-blue-500 text-white px-4 py-2 rounded mb-2 sm:mb-0 w-full sm:w-auto text-center hover:bg-blue-700"
                 >
                     View Room
-                </a>
+                </Link>
                 <button
                     href="#"
                     className="bg-red-500 text-white px-4 py-2 rounded w-full sm:w-auto text-center hover:bg-red-700"
