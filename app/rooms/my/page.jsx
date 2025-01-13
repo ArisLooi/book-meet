@@ -10,7 +10,7 @@ const MyRoomsPage = async () => {
             {rooms.length > 0 ? (
                 rooms.map((room) => <MyRoomCard key={room.$id} room={room} />)
             ) : (
-                <p>You have no room listing</p>
+                <p className="text-gray-600">You have no room listing</p>
             )}
 
         </>
