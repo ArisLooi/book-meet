@@ -30,6 +30,7 @@ async function bookRoom(previousState, formData) {
         const checkInTime = formData.get('check_in_time');
         const checkOutDate = formData.get('check_out_date');
         const checkOutTime = formData.get('check_out_date');
+        const roomId = formData.get('room_id');
 
         // Combine date and time to ISO 8601 format
         const checkInDateTime = `${checkInDate}T${checkInTime}`;
@@ -39,12 +40,13 @@ async function bookRoom(previousState, formData) {
             check_in: checkInDateTime,
             check_out: checkOutDateTime,
             user_id: user.id,
+            room_id: roomId,
         }
 
         // Create booking
         const newBooking = await databases.createDocument(
             process.env.NEXT_PUBLIC_APPWRITE_DATABASE,
-            process.env.NEXT_PUBLIC_APPWRITE_COLLECTION_ROOMS,
+            process.env.NEXT_PUBLIC_APPWRITE_COLLECTION_BOOKINGS,
             ID.unique(),
             bookingData
         );
