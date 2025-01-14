@@ -3,10 +3,9 @@
 import { createSessionClient } from '@/config/appwrite';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
-import { revalidatePath } from 'next/cache';
 import checkAuth from './checkAuth';
 
-async function cancelBooking({ bookingId }) {
+async function cancelBooking(bookingId) {
     const sessionCookie = cookies().get('appwrite-session');
     if (!sessionCookie) {
         redirect('/login');
