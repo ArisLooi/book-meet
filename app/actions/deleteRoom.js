@@ -38,10 +38,6 @@ async function deleteRoom(roomId) {
                 process.env.NEXT_PUBLIC_APPWRITE_COLLECTION_ROOMS,
                 roomToDelete.$id);
 
-            // Revalidate my rooms and all rooms
-            revalidatePath('/rooms/my', 'layout');
-            revalidatePath('/', 'layout');
-
             return {
                 success: true
             }

@@ -2,7 +2,7 @@
 import cancelBooking from "@/app/actions/cancelBooking";
 import { toast } from 'react-toastify'
 
-const cancelBookingButton = (bookingId) => {
+const cancelBookingButton = ({ bookingId }) => {
     const handleCancelClick = async () => {
         if (!confirm('Are you sure you want to cancel this booking?')) {
             return;
