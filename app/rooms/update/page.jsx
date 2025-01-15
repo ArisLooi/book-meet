@@ -3,7 +3,8 @@ import { useEffect, useActionState } from 'react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 import Heading from '@/components/Heading';
-import UpdateRoomForm from '@/components/UpdateRoomForm'; // Import the UpdateRoomForm component
+import UpdateRoomForm from '@/components/UpdateRoomForm';
+import updateRoom from '@/app/actions/updateRoom';
 
 const UpdateRoomPage = ({ room }) => {
     const [state, submitAction] = useActionState(updateRoom, {});
@@ -21,7 +22,7 @@ const UpdateRoomPage = ({ room }) => {
         <>
             <Heading title='Update Room' />
             <div className="bg-white shadow-lg rounded-lg p-6 w-full">
-                <UpdateRoomForm room={room} /> {/* Use the UpdateRoomForm component */}
+                <UpdateRoomForm room={room} />
             </div>
         </>
     );
