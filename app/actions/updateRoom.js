@@ -1,44 +1,46 @@
 'use server';
-
 import { createSessionClient } from '@/config/appwrite';
 import { cookies } from 'next/headers';
+import { Query } from 'node-appwrite';
+import { redirect } from 'next/navigation';
+import { revalidatePath } from 'next/cache';
 
-export default async function handler(req, res) {
-    if (req.method !== 'PUT') {
-        return res.status(405).json({ message: 'Method not allowed' });
-    }
-
-    const { id, name, description, sqft, capacity, price_per_hour, address, location, availability, amenities } = req.body;
-    const cookieStore = await cookies();
-    const sessionCookie = cookieStore.get('appwrite-session');
-
+async function updateRoom(roomId, roomData) {
+    const sessionCookie = cookies().get('appwrite-session');
     if (!sessionCookie) {
-        return res.status(401).json({ message: 'Unauthorized' });
+        redirect('/login');
     }
-
     try {
-        const { databases } = await createSessionClient(sessionCookie.value);
+        const { account, databases } = await createSessionClient(sessionCookie.value);
+        const user = await account.get();
+        const userId = user.$id;
 
-        await databases.updateDocument(
+        const { documents: rooms } = await databases.listDocuments(
             process.env.NEXT_PUBLIC_APPWRITE_DATABASE,
             process.env.NEXT_PUBLIC_APPWRITE_COLLECTION_ROOMS,
-            id,
-            {
-                name,
-                description,
-                sqft,
-                capacity,
-                price_per_hour,
-                address,
-                location,
-                availability,
-                amenities
-            }
+            [Query.equal('user_id', userId)]
         );
 
-        return res.status(200).json({ message: 'Room updated successfully' });
+        const roomToUpdate = rooms.find((room) => room.$id === roomId);
+
+        if (roomToUpdate) {
+            await databases.updateDocument(
+                process.env.NEXT_PUBLIC_APPWRITE_DATABASE,
+                process.env.NEXT_PUBLIC_APPWRITE_COLLECTION_ROOMS,
+                roomToUpdate.$id,
+                roomData
+            );
+
+            revalidatePath('/rooms/my', 'layout');
+            revalidatePath('/', 'layout');
+            return { success: true };
+        } else {
+            return { error: 'Room not found' };
+        }
     } catch (error) {
-        console.error('Failed to update room:', error);
-        return res.status(500).json({ message: 'Failed to update room' });
+        console.log('Failed to update room', error);
+        return { error: 'Failed to update room' };
     }
 }
+
+export default updateRoom;

@@ -1,47 +1,34 @@
 'use client';
-import { useState } from 'react';
-import { toast } from "react-toastify";
-import { FaEdit } from "react-icons/fa";
-import UpdateRoomForm from "./UpdateRoomForm";
+import { toast } from 'react-toastify';
+import { FaEdit } from 'react-icons/fa';
+import updateRoom from '@/app/actions/updateRoom';
 
-const UpdateRoomButton = ({ room }) => {
-    const [isEditing, setIsEditing] = useState(false);
-
-    const handleUpdate = async (updatedRoom) => {
-        try {
-            const response = await fetch('/api/updateRoom', {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(updatedRoom),
-            });
-
-            const result = await response.json();
-
-            if (response.ok) {
-                toast.success('Room updated successfully!');
-                setIsEditing(false);
-            } else {
-                toast.error(result.message);
+const UpdateRoomButton = ({ roomId, roomData }) => {
+    const handleUpdate = async () => {
+        const confirmed = window.confirm('Are you sure you want to update this room?');
+        if (confirmed) {
+            try {
+                const response = await updateRoom(roomId, roomData);
+                if (response.success) {
+                    toast.success('Room updated successfully!');
+                } else {
+                    toast.error(response.error);
+                }
+            } catch (error) {
+                console.log('Failed to update room', error);
+                toast.error('Failed to update room');
             }
-        } catch (error) {
-            console.error('Failed to update room:', error);
-            toast.error('Failed to update room');
         }
     };
 
     return (
-        <>
-            <button
-                onClick={() => setIsEditing(!isEditing)}
-                className="bg-yellow-500 text-white px-4 py-2 rounded mb-2 sm:mb-0 w-full sm:w-auto text-center hover:bg-yellow-700"
-            >
-                <FaEdit className="inline mr-1" /> Edit
-            </button>
-            {isEditing && <UpdateRoomForm room={room} onUpdate={handleUpdate} />}
-        </>
+        <button
+            onClick={handleUpdate}
+            className="bg-blue-500 text-white px-4 py-2 rounded mb-2 sm:mb-0 w-full sm:w-auto text-center hover:bg-blue-700"
+        >
+            <FaEdit className="inline mr-1" /> Update
+        </button>
     );
-}
+};
 
 export default UpdateRoomButton;
