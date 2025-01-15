@@ -32,7 +32,7 @@ async function bookRoom(previousState, formData,) {
         const checkInDate = formData.get('check_in_date');
         const checkInTime = formData.get('check_in_time');
         const checkOutDate = formData.get('check_out_date');
-        const checkOutTime = formData.get('check_out_date');
+        const checkOutTime = formData.get('check_out_time');
         const roomId = formData.get('room_id');
 
         // Combine date and time to ISO 8601 format
