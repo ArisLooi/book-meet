@@ -6,7 +6,7 @@ import { FaChevronLeft } from 'react-icons/fa';
 import getSingleRoom from '@/app/actions/getSingleRoom';
 
 const RoomPage = async ({ params }) => { //params from the server side
-    const { id } = params; //destructure the id from the params
+    const { id } = await params; //destructure the id from the params
     const room = await getSingleRoom(id); //find the room with matching id from the url
 
     if (!room) {
