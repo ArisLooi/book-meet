@@ -16,7 +16,7 @@ const MyRoomCard = ({ room }) => {
                 >
                     <FaEye className="inline mr-1" /> View
                 </Link>
-                <UpdateRoomButton room={room} />
+                <UpdateRoomButton roomId={room.$id} />
                 <DeleteRoomButton roomId={room.$id} />
             </div>
         </div>

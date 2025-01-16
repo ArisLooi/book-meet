@@ -1,22 +1,24 @@
 'use client';
 import { toast } from 'react-toastify';
 import { FaEdit } from 'react-icons/fa';
-import updateRoom from '@/app/actions/updateRoom';
+import { useRouter } from 'next/navigation'; // Import useRouter
 
-const UpdateRoomButton = ({ roomId, roomData }) => {
+const UpdateRoomButton = ({ roomId }) => {
+    const router = useRouter(); // Initialize the router
+
     const handleUpdate = async () => {
         const confirmed = window.confirm('Are you sure you want to update this room?');
         if (confirmed) {
             try {
-                const response = await updateRoom(roomId, roomData);
-                if (response.success) {
-                    toast.success('Room updated successfully!');
+                // Navigate to the update room page
+                if (roomId) {
+                    router.push(`/rooms/update/${roomId}`);
                 } else {
-                    toast.error(response.error);
+                    throw new Error('Room ID is undefined');
                 }
             } catch (error) {
-                console.log('Failed to update room', error);
-                toast.error('Failed to update room');
+                console.log('Failed to navigate to update room page', error);
+                toast.error('Failed to navigate to update room page');
             }
         }
     };
@@ -32,3 +34,4 @@ const UpdateRoomButton = ({ roomId, roomData }) => {
 };
 
 export default UpdateRoomButton;
+
