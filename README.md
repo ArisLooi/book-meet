@@ -64,3 +64,6 @@
 - Add Room: Create new room listings with relevant details.
 - View My Rooms: View and manage your room listings.
 - Delete Room: Delete room listings that you no longer need.
+
+## Acknowledgements & Attributes
+- [Create A Booking App From Scratch | React, Next.js, Appwrite, Tailwind by Traversy Media](https://youtu.be/l9zh0pqEHyc?si=FfdvdytXXig7fp1n)
