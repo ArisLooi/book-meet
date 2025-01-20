@@ -56,11 +56,11 @@
 - View Available Rooms: Browse the available meeting and conference rooms.
 - Book a Room: Fill in the booking form to reserve a room.
 
-## Manage Bookings
+### Manage Bookings
 - View My Bookings: View and manage your current bookings.
 - Cancel Booking: Cancel an existing booking if needed.
 
-## Room Management
+### Room Management
 - Add Room: Create new room listings with relevant details.
 - View My Rooms: View and manage your room listings.
 - Delete Room: Delete room listings that you no longer need.
