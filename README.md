@@ -1,6 +1,6 @@
 # Book-meet
 
-**Bookit** is a room booking application that allows users to easily book meeting or conference rooms, manage their bookings, and create new room listings. Built with Next.js, Appwrite, and TailwindCSS.
+**Book-meet** is a room booking application that allows users to easily book meeting or conference rooms, manage their bookings, and create new room listings. Built with Next.js, Appwrite, and TailwindCSS.
 
 ## Features
 
